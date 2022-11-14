@@ -5,6 +5,7 @@ import glob
 import h5py
 import numpy as np
 import argparse
+os.environ["CDF_LIB"] ='/home/ssw/code/dboa/cdf38_1-dist/lib'
 from spacepy import pycdf
 from torch import use_deterministic_algorithms
 from tqdm import tqdm

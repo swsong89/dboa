@@ -63,7 +63,7 @@ class BaseAdaptor():
         self.set_dataloader()
 
         # set criterion
-        self.set_criterionn()
+        self.set_criterion()
 
         self.setup_smpl()
 
@@ -137,7 +137,7 @@ class BaseAdaptor():
         self.dataloader = DataLoader(dataset, batch_size=self.options.batch_size, shuffle=False, num_workers=8)
 
     def set_criterion(self,):
-        self.gmm_f = MaxMixturePrior(prior_folder='data/spin_data', num_gaussians=8, dtype=torch.float32).to(self.device)
+        self.gmm_f = MaxMixturePrior(prior_folder='data', num_gaussians=8, dtype=torch.float32).to(self.device)
         self.cosembeddingloss = nn.CosineEmbeddingLoss().to(self.device)
 
     def setup_smpl(self,):
@@ -519,8 +519,11 @@ class SourceDataset(Dataset):
         return kp
         
     def read_image(self, imgname):
-        img = cv2.imread(imgname)
-        if not img:
+        img_dir = '/home/ssw/code/dataset/data/data/'
+        name = imgname.split('/')[-1]
+        tmp_imgname = img_dir + name.split('_')[0] + '/' + name
+        img = cv2.imread(tmp_imgname)
+        if not img.any():
             raise FileNotFoundError(
                 errno.ENOENT, 
                 os.strerror(errno.ENOENT), 

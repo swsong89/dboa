@@ -45,8 +45,8 @@ class Internet_dataset(Dataset):
         center = self.centers[index]
         imgname = self.imgnames[index]
         smpl_j2d = self.smpl_j2ds[index]
-
-        image = self.read_image(imgname)
+        print(osp.join(self.imgdir, imgname))
+        image = self.read_image(osp.join(self.imgdir, imgname))
         flip = 0            # flipping
         pn = np.ones(3)  # per channel pixel-noise
         rot = 0            # rotation

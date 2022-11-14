@@ -7,7 +7,9 @@ from smplx.lbs import vertices2joints
 
 import config
 import constants
-
+import os
+os.environ['CUDA_VISIBLE_DEVICES'] = '0'
+print('torch: ', torch.cuda.is_available())
 
 
 

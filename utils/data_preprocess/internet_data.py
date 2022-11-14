@@ -42,7 +42,7 @@ def get_person_height(j2d):
 def internet_data_extract(in_path):    
     # spin joints is body25+smpl joints(24). 
     perm_idx = get_perm_idxs('spin', 'coco') 
-
+    print('json dir : ', os.path.join(in_path, '*.json'))
     seqs = [os.path.basename(name)[:-5] for name in glob.glob(os.path.join(in_path, '*.json'))]#['seq01_c01', 'seq02_c01', 'seq03_c01', 'seq04_c01', 'seq07_c01', 'seq10_c01']
     seqs.sort()
     for seq in seqs:
@@ -53,7 +53,7 @@ def internet_data_extract(in_path):
         jsonfile = f'{in_path}/{seq}.json'
         annots = load_json(jsonfile)
         for annot in tqdm(annots, total=len(annots)):
-            imagename = os.path.join(seq, annot['image_id'])
+            imagename = annot['image_id']
             kps2d = np.array(annot['keypoints']).reshape(-1,3)
             score = annot['score']
             height = get_person_height(kps2d)
@@ -75,5 +75,7 @@ def internet_data_extract(in_path):
             scales.append(scale)
             j2ds.append(part)
         out_file = os.path.join(in_path, f'{seq}.npz')
-        print(f'{seq} Total Images:', len(glob.glob(os.path.join(in_path, 'images', seq, '*.png'))), ', in fact:', len(imagenames))
+        print('images dir : ', os.path.join(in_path, 'images', '*.png'))
+
+        print(f'{seq} Total Images:', len(glob.glob(os.path.join(in_path, 'images', '*.png'))), ', in fact:', len(imagenames))
         np.savez(out_file, imgname=imagenames, center=centers, scale=scales, part=j2ds)

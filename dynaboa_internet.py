@@ -15,13 +15,13 @@ from base_adaptor import BaseAdaptor
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--expdir', type=str, default='exps')
-parser.add_argument('--expname', type=str, default='3dpw')
-parser.add_argument('--dataset', type=str, default='3dpw', choices=['3dpw', 'internet'])
+parser.add_argument('--expname', type=str, default='internet')
+parser.add_argument('--dataset', type=str, default='internet', choices=['3dpw', 'internet'])
 parser.add_argument('--seed', type=int, default=22, help='random seed')
 parser.add_argument('--seq_seed', type=int, default=22, help='random seed')
 parser.add_argument('--model_file', type=str, default='data/basemodel.pt')
 parser.add_argument('--batch_size', type=int, default=1, help='batch size')
-parser.add_argument('--save_res', type=int, default=0, choices=[0,1], help='save middle mesh and image')
+parser.add_argument('--save_res', type=int, default=1, choices=[0,1], help='save middle mesh and image')
 
 parser.add_argument('--lr', type=float, default=3e-6, help='learning rate of the upper-level')
 parser.add_argument('--beta1', type=float, default=0.5, help='beta1 of adam')
@@ -171,7 +171,7 @@ class Adaptor(BaseAdaptor):
 if __name__ == '__main__':
     options = parser.parse_args()
     exppath = osp.join(options.expdir, options.expname)
-    os.makedirs(exppath, exist_ok=False)
+    os.makedirs(exppath, exist_ok=True)
     argsDict = options.__dict__
     with open(f'{exppath}/setting.txt', 'w') as f:
         f.writelines('------------------ start ------------------' + '\n')

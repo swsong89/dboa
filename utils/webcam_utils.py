@@ -52,7 +52,7 @@ class WebcamVideoStream(object):
 class OpenposeWarper():
     def __init__(self):
         params = dict()
-        params["model_folder"] = "/data/mesh_reconstruction/openpose/models/"
+        params["model_folder"] = "/home/ssw/code/openpose/models/"
         params["model_pose"] = "BODY_25"
         self.opWrapper = op.WrapperPython()
         self.opWrapper.configure(params)

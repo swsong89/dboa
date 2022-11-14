@@ -265,7 +265,8 @@ class Adaptor(BaseAdaptor):
 if __name__ == '__main__':
     options = parser.parse_args()
     exppath = osp.join(options.expdir, options.expname)
-    os.makedirs(exppath, exist_ok=False)
+    print(exppath)
+    os.makedirs(exppath, exist_ok=True)
     argsDict = options.__dict__
     with open(f'{exppath}/setting.txt', 'w') as f:
         f.writelines('------------------ start ------------------' + '\n')

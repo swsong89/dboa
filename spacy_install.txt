@@ -1,0 +1,30 @@
+pip install spacepy
+下载 https://spdf.gsfc.nasa.gov/pub/software/cdf/dist/cdf38_1/cdf38_1-dist-all.tar.gz  解压
+
+
+安装 https://blog.csdn.net/minione_2016/article/details/97656892
+wget -r -l1 -np -nd -nc http://cdaweb.gsfc.nasa.gov/pub/software/cdf/dist/latest-release/linux/ -A cdf*-dist-all.tar.gz
+tar xf cdf*-dist-all.tar.gz -C ./
+cd cdf*dist
+
+pip install numpy scipy h5py matplotlib networkx
+apt install build-essential gfortran libncurses5-dev
+
+make all.help
+
+make OS=linux ENV=gnu CURSES=yes FORTRAN=no UCOPTIONS=-O2 SHARED=yes -j4 all
+make install #no sudo
+
+#注意这里需要改一下路径；添加一下bashrc即可
+. $HOME/Libraries/cdf/cdf36_3-dist/bin/definitions.B
+
+# 进definitions.B改一下lin68,替换一下
+export LD_LIBRARY_PATH=$HOME/Libraries/cdf/cdf36_3-dist/lib:$LD_LIBRARY_PATH
+
+以上是可以解决如上报错，但是在pycharm中依旧会报错
+理由是添加的bashrc无法在pycharm中识别。
+这个时候就需要手动在pycharm的编译器中添加相应的bash路径了
+
+
+在utils/data_process/human36m.pu加上
+os.environ["CDF_LIB"] ='/home/ssw/code/dboa/cdf38_1-dist/lib'

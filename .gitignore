@@ -10,3 +10,13 @@ __py**__
 supp_assets
 exps
 temp
+cdf38_1-dist
+openpose
+*.obj
+*.mp4
+*.temp
+*.gz
+*.json
+*.zip
+*.xz
+*.php

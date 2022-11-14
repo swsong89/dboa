@@ -4,9 +4,9 @@ for the datasets and data files necessary to run the code.
 Things you need to change: *_ROOT that indicate the path to each dataset
 """
 
-PW3D_ROOT = '/data/syguan/human_datasets/3dpw'
-H36M_ROOT = '/data/syguan/human_datasets/Human3.6M/human36m_full_raw'
-InternetData_ROOT = 'supp_assets/bilibili'
+PW3D_ROOT = '/home/ssw/code/dataset/3DPW'
+H36M_ROOT = '/home/ssw/code/dataset/data/data'
+InternetData_ROOT = '/home/ssw/code/dboa/demo/football/'
 
 # Output folder to save test/train npz files
 DATASET_NPZ_PATH = 'data/dataset_extras'

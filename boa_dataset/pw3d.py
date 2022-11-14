@@ -31,7 +31,9 @@ class PW3D(Dataset):
         
         # 3DPW
         self.pw3d_img_dir = config.PW3D_ROOT
-        self.pw3d_datas = glob.glob('data/dataset_extras/3dpw_[0-9]*_[0-9].npz')
+        # self.pw3d_datas = glob.glob('data/data_extras/3dpw_[0-9]*_[0-9].npz')
+        self.pw3d_datas = glob.glob('data/data_extras/3dpw_0_0.npz')
+
         self.pw3d_datas.sort(key=key_3dpw)
         print(f'pw3d: {len(self.pw3d_datas)}')
 

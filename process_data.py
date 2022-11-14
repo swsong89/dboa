@@ -4,7 +4,7 @@ import config
 import argparse
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--dataset', type=str, required=True, choices=['3dpw', '3dhp', 'h36m', 'internet'],help='process which dataset?')
+parser.add_argument('--dataset', type=str, default='internet', choices=['3dpw', '3dhp', 'h36m', 'internet'],help='process which dataset?')
 
 if __name__ == '__main__':
     args = parser.parse_args()
